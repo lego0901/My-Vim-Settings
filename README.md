@@ -153,7 +153,7 @@ vundle, vim-fugitive, The-NERD-tree 이외의 플러그인에 대한 설명을 �
 - F11 키를 이용하여 알맞는 화면 크기로 조정할 수 있습니다.
 - .c, .cpp 파일에서 F3 키를 눌려 컴파일한 후, F4 키를 눌려 실행할 수 있습니다. 실행은 gnome-terminal 에서 구현됩니다.
 - .java 파일 상에서 F3 키로 컴파일, F4 키로 실행할 수 있습니다. "\sysout" 단축키를 통해 System.out.println(); 코드를 빠르게 불러올 수 있습니다.
-  - **주의**. java, javac 명령어는 콘솔을 실행하는 디렉토리의 위치에 영향을 많이 받습니다. NERDTree에서 소스코드가 담긴 폴더로 이동하여 ":cd" 명령어를 입력하시면 잘 작동할 것입니다.
+  - **주의**. java, javac 명령어는 콘솔을 실행하는 디렉토리의 위치에 영향을 많이 받습니다. NERDTree에서 소스코드가 담긴 폴더로 이동하여 "cd" 명령어를 입력하시면 잘 작동할 것입니다.
 - .python 파일에서는 F3 키로 컴파일과 실행을 동시에 하실 수 있습니다.
   - python3 사용자 분들은 "au FileType python nmap \<F3> :! python %" 대신 "au FileType python nmap \<F3> :! python3 %"로 바꿔 사용하시면 됩니다.
 
