@@ -1,0 +1,118 @@
+
+set hlsearch
+set nu
+set scrolloff=2
+set wildmode=longest,list
+set cindent
+set bs=eol,start,indent
+set history=256
+set laststatus=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set paste
+set showmatch
+set smarttab
+set smartindent
+set noexpandtab
+set ruler
+set incsearch
+set autoread
+set autoindent
+set autowrite
+
+set exrc
+set secure
+
+au BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "norm g'\"" |
+\ endif
+
+
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'The-NERD-tree'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'a.vim'
+Plugin 'c.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jvoorhis/coq.vim'
+Plugin 'vim-scripts/CoqIDE', {'autoload':{'filetypes':'coq'}}
+Plugin 'altercation/vim-colors-solarized'
+
+call vundle#end()
+filetype plugin indent on
+
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_key_list_select_completion = ["<Down>"]
+let g:ycm_key_list_previous_completion = ["<Up>"]
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_warning_symbol = ">*"
+let g:ycm_min_num_of_chars_for_completion = 1
+
+
+let NERDTreeIgnore = ['\.out', '\.aux', 'c_out', '\.class', '\.fls', '\.log', '\.fdb_latexmk']
+
+vmap <C-c> "+y
+nmap <C-v> "+p
+nmap <C-a> gg v G "+y
+"nmap <C-f> :set guifont=Ubuntu\ Mono\ 
+nmap <leader>g :YcmCompleter GoTo<CR>
+nmap <leader>f :YcmCompleter FixIt<CR>
+nmap <F2> :NERDTreeToggle<CR>
+imap <F2> <Esc>:NERDTreeToggle<CR>
+
+nmap <F9> :set lines=63 columns=110<CR>
+nmap <F10> :set lines=30 columns=60<CR>
+nmap <F11> :set lines=30 columns=100<CR>
+nmap <F12> :set lines=48 columns=150<CR>
+
+au FileType c,cpp nmap <F3> :! g++ % -o ~/c/c_out
+au FileType c,cpp nmap <F4> :! gnome-terminal -x sh -c '~/c/c_out && read continue && exit; exec bash'<CR>
+
+au FileType java nmap <F3> :! javac %
+au FileType java nmap <F4> :! java %<
+au FileType java imap <leader>sysout System.out.println();<Esc>==$hi
+au FileType java nmap <leader>sysout aSystem.out.println();<Esc>==$hi
+au FileType java imap {<Enter> {<CR>}<Esc>ko
+
+au FileType python nmap <F3> :! python %
+
+au FileType coq nmap <F3> :CoqIDENext<CR>
+au FileType coq nmap <F4> :CoqIDEUndo<CR>
+au FileType coq nmap <F5> :CoqIDEToCursor<CR>
+au FileType coq nmap <F7> :CoqIDEKill
+"au FileType coq highlight SentToCoq ctermbg=60 guibg=#3D495D : nord
+"au FileType coq highlight SentToCoq ctermbg=60 guibg=#EEE8D5
+
+au FileType tex nmap <C-Tab> I<Space><Space><Space><Space>
+au FileType tex imap <C-Tab> <Esc>I<Space><Space><Space><Space>
+au FileType tex nmap <C-S-Tab> 0xxxx
+au FileType tex imap <C-S-Tab> <Bs><Bs><Bs><Bs>
+
+
+if has("gui_running")
+	set background=dark
+	"set background=light
+	colorscheme solarized
+	set guioptions-=m
+	set guioptions-=T
+	set guioptions-=r
+	set guioptions-=L
+	"colorscheme bubblegum-256-light
+	"colorscheme PaperColor
+	set lines=30 columns=100
+	set guifont=Ubuntu\ Mono\ 13
+else
+	set background=dark
+endif
